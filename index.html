@@ -62,6 +62,16 @@
 
         .titre-act { margin: 0; color: #333; font-size: 1.2em; }
         .info-places { color: #636e72; font-size: 0.9em; margin-top: 5px; }
+    /* Style pour le compteur en bas de page */
+        .footer-compteur {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.8em;
+            color: #95a5a6;
+            border-top: 1px solid #ddd;
+            width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -113,5 +123,10 @@
             container.innerHTML += structure;
         });
     </script>
+    <div class="footer-compteur">
+    <p>Cette page a été consultée</p>
+    <!-- Widget de compteur gratuit -->
+    <img src="https://hitwebcounter.com/counter/counter.php?page=votre_id_unique&style=0007&nbdigits=5&type=page&initCount=0" title="Compteur de visites" Alt="Visites"   border="0" />
+</div>
 </body>
 </html>
