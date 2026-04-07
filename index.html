@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <!-- CRUCIAL pour le mobile : adapte la largeur à l'écran du téléphone -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Association - Activités</title>
+    <style>
+        /* --- STYLE GÉNÉRAL --- */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 10px; /* Petit espace sur mobile */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { color: #2c3e50; text-align: center; }
+
+        /* --- CONTENEUR DES CARTES --- */
+        #listeActivites {
+            width: 100%;
+            max-width: 600px; /* Limite la largeur sur ordinateur */
+        }
+
+        /* --- CARTE D'ACTIVITÉ --- */
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative; /* Pour positionner le badge "Complet" dessus */
+        }
+
+        .card img {
+            width: 100%; /* L'image prend toute la largeur de la carte */
+            display: block;
+        }
+
+        .card-body { padding: 15px; }
+
+        /* --- BADGE COMPLET --- */
+        .badge-complet {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #d63031;
+            color: white;
+            padding: 8px 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .titre-act { margin: 0; color: #333; font-size: 1.2em; }
+        .info-places { color: #636e72; font-size: 0.9em; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>Nos Événements</h1>
+
+    <div id="listeActivites">
+        <!-- Le JavaScript va remplir cette section -->
+    </div>
+
+    <script>
+        /* --- CONFIGURATION DES DONNÉES --- */
+        // Ajoute tes activités ici. La première est la plus récente.
+        const mesActivites = [
+            {
+                titre: "Sortie Forêt de Brocéliande",
+                image: "affiche_foret.jpg", // Nom de ton fichier image
+                inscrits: 30,
+                quota: 30
+            },
+            {
+                titre: "Loto de Printemps",
+                image: "affiche_loto.jpg",
+                inscrits: 12,
+                quota: 50
+            }
+        ];
+
+        /* --- LOGIQUE DE GÉNÉRATION --- */
+        const container = document.getElementById('listeActivites');
+
+        mesActivites.forEach(act => {
+            // On vérifie si c'est complet
+            const estComplet = act.inscrits >= act.quota;
+            
+            // On crée le HTML de la carte
+            const structure = `
+                <div class="card">
+                    ${estComplet ? '<div class="badge-complet">COMPLET</div>' : ''}
+                    <img src="${act.image}" alt="Affiche de ${act.titre}">
+                    <div class="card-body">
+                        <h2 class="titre-act">${act.titre}</h2>
+                        <p class="info-places">Inscriptions : ${act.inscrits} / ${act.quota}</p>
+                    </div>
+                </div>
+            `;
+            
+            // On l'ajoute dans la page
+            container.innerHTML += structure;
+        });
+    </script>
+</body>
+</html>
